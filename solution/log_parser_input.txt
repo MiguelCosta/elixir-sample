@@ -1,0 +1,29 @@
+Started POST "/admin/hard_drives" for ::1 at 2020-04-21 21:13:42 +0100
+Processing by Admin::HardDrivesController#create as HTML
+  Parameters: {"authenticity_token"=>"KXqaFuHJTv+dGZn/vQmqv8oHKefSMS9DBc2lJ/3PngB3Ro0yg62T29mdPLW3nFr9aSmj6tDvLIFMYSKqNHAIaw==", "hard_drive"=>{"name"=>"Test", "category"=>"climate"}, "commit"=>"Add Hard Drive"}
+   (0.2ms)  BEGIN
+  HardDrive Exists? (0.9ms)  SELECT 1 AS one FROM "hard_drives" WHERE "hard_drives"."name" = $1 LIMIT $2  [["name", "Test"], ["LIMIT", 1]]
+  HardDrive Create (24.8ms)  INSERT INTO "hard_drives" ("name", "created_at", "updated_at", "category") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "Test"], ["created_at", "2020-04-21 20:13:42.020023"], ["updated_at", "2020-04-21 20:13:42.020023"], ["category", "climate"]]
+   (0.7ms)  COMMIT
+Redirected to http://localhost:3000/admin/hard_drives
+Completed 302 Found in 34ms (ActiveRecord: 26.6ms | Allocations: 2202)
+
+
+Started GET "/admin/hard_drives" for ::1 at 2020-04-21 21:13:42 +0100
+Processing by Admin::HardDrivesController#index as HTML
+  Rendering admin/hard_drives/index.slim within layouts/admin
+  HardDrive Load (0.3ms)  SELECT "hard_drives".* FROM "hard_drives"
+  Rendered admin/hard_drives/index.slim within layouts/admin (Duration: 21.2ms | Allocations: 5505)
+  Rendered application/_watermark.html.slim (Duration: 1.4ms | Allocations: 674)
+Completed 200 OK in 27ms (Views: 23.7ms | ActiveRecord: 2.9ms | Allocations: 8874)
+
+
+Started GET "/admin/hard_drives/1/edit" for ::1 at 2020-04-21 21:13:44 +0100
+Processing by Admin::HardDrivesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  HardDrive Load (0.7ms)  SELECT "hard_drives".* FROM "hard_drives" WHERE "hard_drives"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+  Rendering admin/hard_drives/edit.slim within layouts/admin
+  Rendered admin/hard_drives/_form.slim (Duration: 1.6ms | Allocations: 740)
+  Rendered admin/hard_drives/edit.slim within layouts/admin (Duration: 6.6ms | Allocations: 2880)
+  Rendered application/_watermark.html.slim (Duration: 1.5ms | Allocations: 673)
+Completed 200 OK in 19ms (Views: 13.0ms | ActiveRecord: 1.3ms | Allocations: 6705)
